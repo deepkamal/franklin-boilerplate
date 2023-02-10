@@ -13,3 +13,6 @@ section.setAttribute("id","lazyLoadedReact")
 react1(section,"Delay Loaded")
 document.querySelector('div#reactSection').append(section);
 
+const resp = JSON.parse(await (await fetch(`diff.json`)).text());
+console.log(resp)
+
