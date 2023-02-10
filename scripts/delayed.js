@@ -8,8 +8,8 @@ sampleRUM('cwv');
 // add more delayed functionality here
 console.log("Loaded react 1",react1)
 
-const main = document.querySelector('main');
 const section = document.createElement('div');
-react1(section)
-// section.append(react1);
-main.prepend(section);
+section.setAttribute("id","lazyLoadedReact")
+react1(section,"Delay Loaded")
+document.querySelector('div#reactSection').append(section);
+

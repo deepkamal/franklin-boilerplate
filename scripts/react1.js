@@ -9,5 +9,5 @@ class React1 extends React.Component {
   }
 }
 
-export default (domElement)=>ReactDOM.render(React.createElement( React1,{"name":"test_test"}),domElement)
+export default (parentElement,name)=>ReactDOM.render(React.createElement( React1,{name}),parentElement)
 // export default o;

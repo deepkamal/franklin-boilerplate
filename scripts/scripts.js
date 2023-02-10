@@ -13,8 +13,10 @@ import {
   loadCSS,
 } from './lib-franklin.js';
 
+import react1 from './react1.js';
+
 const LCP_BLOCKS = []; // add your LCP blocks to the list
-window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
+window.hlx.RUM_GENERATION = 'Franklin-React-POC'; // add your RUM generation information here
 
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
@@ -65,6 +67,7 @@ async function loadEager(doc) {
     decorateMain(main);
     await waitForLCP(LCP_BLOCKS);
   }
+  loadReactSection(main)
 }
 
 /**
@@ -107,12 +110,28 @@ async function loadLazy(doc) {
 }
 
 /**
+ * Load react sections
+ */
+
+function loadReactSection(main)
+{
+  const reactSection = document.createElement('div',);
+  reactSection.setAttribute("id","reactSection")
+  main.prepend(reactSection);
+
+  const eagerLoadSection =  document.createElement('div');
+  eagerLoadSection.setAttribute("id","eagerLoadedReact")
+  react1(eagerLoadSection,"Live Loaded")
+  reactSection.append(eagerLoadSection)
+}
+
+/**
  * loads everything that happens a lot later, without impacting
  * the user experience.
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  window.setTimeout(() => import('./delayed.js'), 1000);
   // load anything that can be postponed to the latest here
 }
 
