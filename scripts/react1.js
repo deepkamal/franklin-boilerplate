@@ -10,4 +10,3 @@ class React1 extends React.Component {
 }
 
 export default (parentElement,name)=>ReactDOM.render(React.createElement( React1,{name}),parentElement)
-// export default o;
