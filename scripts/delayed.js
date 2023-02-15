@@ -23,51 +23,27 @@ react1(section, 'Delay Loaded');
 document.querySelector('div#reactSection')
   .append(section);
 
-const resp = JSON.parse(await (await fetch(`diff.json`)).text());
+const locale_keys = {
+  "en":"en",
+  "jp":"jp",
+  "es":"es",
+  "default":"en"
+}
+
+const params = new Proxy(new URLSearchParams(window.location.search), {
+  get: (searchParams, prop) => searchParams.get(prop),
+});
+
+const resp = JSON.parse(await (await fetch(`menu.json?sheet=${locale_keys[params.locale||'default']}`)).text());
 console.log(resp);
+
 
 const leftLinks = [
   {
     element: (React.createElement(StyledLink, { text: 'TEST TEST' })),
     key: 'changeRegion',
   },
-  // {
-  //   dataT: 'license',
-  //   href: '/license',
-  //   text: 'License terms',
-  //   title: 'License terms',
-  // },
-  // {
-  //   dataT: 'learn',
-  //   href: '/learn',
-  //   text: 'Learn & Support',
-  //   title: 'Learn & Support',
-  // },
-  // {
-  //   dataT: 'blog',
-  //   href: '/blog',
-  //   text: 'Blog',
-  //   title: 'Blog',
-  // },
-  // {
-  //   dataT: 'company',
-  //   href: '/company',
-  //   text: 'Company',
-  //   title: 'Company',
-  // },
-  // {
-  //   dataT: 'sell ',
-  //   href: '/sell',
-  //   text: 'Sell Images',
-  //   title: 'Sell Images',
-  // },
-  {
-    dataT: 'enterprise',
-    href: '/enterprise',
-    text: 'Enterprise',
-    title: 'Enterprise',
-  },
-  ...resp.flinks.data,
+  ...resp.data,
 ];
 const rightLinks = [
   {
