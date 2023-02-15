@@ -27,14 +27,15 @@ const locale_keys = {
   "en":"en",
   "jp":"jp",
   "es":"es",
-  "default":"en"
+  "default":"en",
+  undefined:"en",
 }
 
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
 
-const resp = JSON.parse(await (await fetch(`menu.json?sheet=${locale_keys[params.locale||'default']}`)).text());
+const resp = JSON.parse(await (await fetch(`menu.json?sheet=${locale_keys[locale_keys[params.locale]]}`)).text());
 console.log(resp);
 
 

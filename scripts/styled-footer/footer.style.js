@@ -62,6 +62,10 @@ const StyledLink = styled(NavItem)`
   padding: 6px 8px;
   transition: color .3s;
 
+  a{
+    color:${SPECTRUM_COLOR_GRAY_500} ;
+    text-decoration: none;
+  }
   &:focus,
   &:hover {
     background-color: inherit;
